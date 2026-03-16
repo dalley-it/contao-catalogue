@@ -1,0 +1,19 @@
+{
+  "name": "dalley-it/contao-catalogue",
+  "type": "contao-bundle",
+  "description": "Catalog bundle providing RSCE-like schema-driven records with list/reader, filters, prev/next navigation, and multilingual linking.",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.1",
+    "contao/core-bundle": "^5.3",
+    "symfony/framework-bundle": "^6.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "DalleyIt\\ContaoCatalogue\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "DalleyIt\\ContaoCatalogue\\ContaoManager\\Plugin"
+  }
+}

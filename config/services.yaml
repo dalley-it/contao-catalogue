@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  DalleyIt\ContaoCatalogue\:
+    resource: ../src/
+    exclude: ../src/{ContaoManager,DependencyInjection,Entity,Migrations,Tests}
+

@@ -1,0 +1,43 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php if (!$this->record): ?>
+<p>Entry not found.</p>
+<?php return; endif; ?>
+
+<article class="cc-catalogue-reader">
+  <h1><?= $this->record['title'] ?></h1>
+
+  <?php if (!empty($this->record['idx_taxonomy'])): ?>
+    <p><strong>Filter:</strong> <?= $this->record['idx_taxonomy'] ?></p>
+  <?php endif; ?>
+
+  <?php if (!empty($this->record['data'])): ?>
+    <dl class="ce-catalog-data">
+      <?php foreach ($this->record['data'] as $k => $v): ?>
+        <dt><?= $k ?></dt>
+        <dd><?= is_scalar($v) ? $v : json_encode($v) ?></dd>
+      <?php endforeach; ?>
+    </dl>
+  <?php endif; ?>
+
+  <nav class="cc-catalogue-nav">
+    <?php if ($this->prev): ?>
+      <a class="prev" href="<?= $this->getPageModel()->getFrontendUrl(array_merge($_GET, ['item' => $this->prev['alias'] ?: $this->prev['id']])) ?>">← <?= $this->prev['title'] ?></a>
+    <?php endif; ?>
+    <?php if ($this->next): ?>
+      <a class="next" href="<?= $this->getPageModel()->getFrontendUrl(array_merge($_GET, ['item' => $this->next['alias'] ?: $this->next['id']])) ?>"><?= $this->next['title'] ?> →</a>
+    <?php endif; ?>
+  </nav>
+
+  <?php if (!empty($this->translations)): ?>
+    <div class="cc-catalogue-languages">
+      <?php foreach ($this->translations as $lang => $id): ?>
+        <a href="<?= $this->getPageModel()->getFrontendUrl(array_merge($_GET, ['item' => $id])) ?>"><?= strtoupper($lang) ?></a>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+
+  <p>
+    <a href="<?= $this->getPageModel()->getFrontendUrl($this->backParams) ?>">Back to list</a>
+  </p>
+</article>
